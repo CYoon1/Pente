@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D81AAA662BBB6E43005B63FE /* PenteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA652BBB6E43005B63FE /* PenteApp.swift */; };
-		D81AAA682BBB6E43005B63FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA672BBB6E43005B63FE /* ContentView.swift */; };
 		D81AAA6A2BBB6E45005B63FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81AAA692BBB6E45005B63FE /* Assets.xcassets */; };
 		D81AAA6D2BBB6E45005B63FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81AAA6C2BBB6E45005B63FE /* Preview Assets.xcassets */; };
 		D81AAA772BBB6E45005B63FE /* PenteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA762BBB6E45005B63FE /* PenteTests.swift */; };
@@ -39,7 +38,6 @@
 /* Begin PBXFileReference section */
 		D81AAA622BBB6E43005B63FE /* Pente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pente.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81AAA652BBB6E43005B63FE /* PenteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenteApp.swift; sourceTree = "<group>"; };
-		D81AAA672BBB6E43005B63FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D81AAA692BBB6E45005B63FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81AAA6C2BBB6E45005B63FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D81AAA722BBB6E45005B63FE /* PenteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PenteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				D81AAA652BBB6E43005B63FE /* PenteApp.swift */,
-				D81AAA672BBB6E43005B63FE /* ContentView.swift */,
 				D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */,
 				D81AAA912BBB6E7D005B63FE /* VM.swift */,
 				D81AAA932BBB6E9E005B63FE /* Engine.swift */,
@@ -267,7 +264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */,
-				D81AAA682BBB6E43005B63FE /* ContentView.swift in Sources */,
 				D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */,
 				D81AAA662BBB6E43005B63FE /* PenteApp.swift in Sources */,
 				D81AAA942BBB6E9E005B63FE /* Engine.swift in Sources */,
