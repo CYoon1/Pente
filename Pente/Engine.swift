@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum GameState: Int {
     case running = 0, xwin, owin, draw
@@ -39,9 +40,19 @@ enum Player: Int {
         case .none:
             ""
         case .x:
-            "xmark"
+            "circle.fill"
         case .o:
-            "circle"
+            "circle.fill"
+        }
+    }
+    var color: Color {
+        switch self {
+        case .none:
+            Color.clear
+        case .x:
+            Color.red
+        case .o:
+            Color.blue
         }
     }
     func isOpposite(player: Player) -> Bool {
@@ -237,12 +248,12 @@ class Engine {
     func checkHorizontalWin(row: Int, col: Int) -> Player {
         // Check Horizontals, shift over one for each
         let player = board[row][col].player
-        for startOffset in -5...0 {
+        for startOffset in -4...0 {
             let newCol = col + startOffset
             guard (newCol >= 0) && (newCol < colMax) else { continue }
             var numberMatching = 0
-            for j in 0...5 {
-                let c = newCol + j
+            for offset in 0...4 {
+                let c = newCol + offset
                 guard (c >= 0) && (c < colMax) else { break }
                 if board[row][c].player == player {
                     numberMatching += 1

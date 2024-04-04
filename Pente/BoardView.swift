@@ -43,6 +43,7 @@ struct TileView: View {
         Image(systemName: tile.player.symbol)
             .resizable()
             .scaledToFit()
+            .foregroundColor(tile.player.color)
             .background {
                 ZStack {
                     Rectangle().opacity(0.001)
