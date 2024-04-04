@@ -51,6 +51,12 @@ class VM {
                 Text("Player 2: \(playerOCapCounter)")
             }
             Spacer()
+            Button {
+                self.resetGame()
+            } label: {
+                Text("Reset")
+            }
+
         }
     }
 }
