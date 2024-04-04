@@ -59,27 +59,8 @@ struct Tile: Identifiable {
 
 @Observable
 class Engine {
-    private (set) var board = [
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-    ]
+    private (set) var board = Array(repeating: Array(repeating: Tile(), count: 19), count: 19)
+    
     let rowMax: Int = 19
     let colMax: Int = 19
     
@@ -104,7 +85,7 @@ class Engine {
         changeTile(row: row, col: col)
         capturePiece(row: row, col: col)
         // check for win
-        updateGameState()
+        updateGameState(row: row, col: col)
     }
     func changeTile(row: Int, col: Int) {
         board[row][col].player = currentPlayer
@@ -175,7 +156,7 @@ class Engine {
         }
         // diagonal down left
         // (row + 3 <= 0) && (col - 3 >= 0)
-        if (row + 3 <= 0) && (col - 3 >= 0) {
+        if (row + 3 <= rowMax) && (col - 3 >= 0) {
             if (tempBoard[row+1][col-1].player.isOpposite(player: currentPlayer)) && (tempBoard[row+2][col-2].player.isOpposite(player: currentPlayer)) && (tempBoard[row+3][col-3].player == currentPlayer) {
                 // Capture occurs
                 tempBoard[row+1][col-1].player = .none
@@ -185,8 +166,8 @@ class Engine {
         }
         
         // diagonal down right
-        // (row + 3 <= 0) && (col + 3 <= 0)
-        if (row + 3 <= 0) && (col + 3 >= 0) {
+        // (row + 3 <= rowMax) && (col + 3 <= colMax)
+        if (row + 3 <= rowMax) && (col + 3 <= colMax) {
             if (tempBoard[row+1][col+1].player.isOpposite(player: currentPlayer)) && (tempBoard[row+2][col+2].player.isOpposite(player: currentPlayer)) && (tempBoard[row+3][col+3].player == currentPlayer) {
                 // Capture occurs
                 tempBoard[row+1][col+1].player = .none
@@ -195,8 +176,8 @@ class Engine {
             }
         }
         // diagonal up right
-        // (row - 3 >= 0) && (col + 3 <= 0)
-        if (row - 3 <= 0) && (col + 3 >= 0) {
+        // (row - 3 >= 0) && (col + 3 <= colMax)
+        if (row - 3 >= 0) && (col + 3 <= colMax) {
             if (tempBoard[row-1][col+1].player.isOpposite(player: currentPlayer)) && (tempBoard[row-2][col+2].player.isOpposite(player: currentPlayer)) && (tempBoard[row-3][col+3].player == currentPlayer) {
                 // Capture occurs
                 tempBoard[row-1][col+1].player = .none
@@ -208,9 +189,12 @@ class Engine {
         board = tempBoard
     }
     
-    func updateGameState() {
+    func updateGameState(row: Int, col: Int) {
         // check for a win
-        
+        flagWin(player: checkTotalCountForWin())
+        flagWin(player: checkDiagonalWin(row: row, col: col))
+        flagWin(player: checkHorizontalWin(row: row, col: col))
+        flagWin(player: checkVerticalWin(row: row, col: col))
         // else, check for a draw (all tiles filled)
 //        checkForDraw()
         // else, game continues (only change turn if game continues)
@@ -229,14 +213,31 @@ class Engine {
             currentGameState = .running
         }
     }
-    func checkDiagonalWin() -> Player {
+    func checkTotalCountForWin() -> Player {
+        if numberCapturedByX >= 10 {
+            return .x
+        }
+        if numberCapturedByO >= 10 {
+            return .o
+        }
+        return .none
+    }
+    func checkDiagonalWin(row: Int, col: Int) -> Player {
+        // Check diagonals, shift over one for each
         
+        // No winning conditions found
         return .none
     }
-    func checkVerticalWin() -> Player {
+    func checkVerticalWin(row: Int, col: Int) -> Player {
+        // Check Verticals, shift over one for each
+        
+        // No winning conditions found
         return .none
     }
-    func checkHorizontalWin() -> Player {
+    func checkHorizontalWin(row: Int, col: Int) -> Player {
+        // Check Horizontals, shift over one for each
+        
+        // No winning conditions found
         return .none
     }
     func checkForDraw() {
@@ -245,28 +246,10 @@ class Engine {
     
     func resetGame() {
         print("Resetting Game")
-        board = [
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-        ]
+        board = Array(repeating: Array(repeating: Tile(), count: 19), count: 19)
         currentPlayer = .x
         currentGameState = .running
+        numberCapturedByX = 0
+        numberCapturedByO = 0
     }
 }
