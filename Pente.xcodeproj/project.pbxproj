@@ -14,6 +14,9 @@
 		D81AAA772BBB6E45005B63FE /* PenteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA762BBB6E45005B63FE /* PenteTests.swift */; };
 		D81AAA812BBB6E45005B63FE /* PenteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA802BBB6E45005B63FE /* PenteUITests.swift */; };
 		D81AAA832BBB6E45005B63FE /* PenteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA822BBB6E45005B63FE /* PenteUITestsLaunchTests.swift */; };
+		D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */; };
+		D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA912BBB6E7D005B63FE /* VM.swift */; };
+		D81AAA942BBB6E9E005B63FE /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA932BBB6E9E005B63FE /* Engine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		D81AAA7C2BBB6E45005B63FE /* PenteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PenteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81AAA802BBB6E45005B63FE /* PenteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenteUITests.swift; sourceTree = "<group>"; };
 		D81AAA822BBB6E45005B63FE /* PenteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		D81AAA912BBB6E7D005B63FE /* VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM.swift; sourceTree = "<group>"; };
+		D81AAA932BBB6E9E005B63FE /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 			children = (
 				D81AAA652BBB6E43005B63FE /* PenteApp.swift */,
 				D81AAA672BBB6E43005B63FE /* ContentView.swift */,
+				D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */,
+				D81AAA912BBB6E7D005B63FE /* VM.swift */,
+				D81AAA932BBB6E9E005B63FE /* Engine.swift */,
 				D81AAA692BBB6E45005B63FE /* Assets.xcassets */,
 				D81AAA6B2BBB6E45005B63FE /* Preview Content */,
 			);
@@ -257,8 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */,
 				D81AAA682BBB6E43005B63FE /* ContentView.swift in Sources */,
+				D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */,
 				D81AAA662BBB6E43005B63FE /* PenteApp.swift in Sources */,
+				D81AAA942BBB6E9E005B63FE /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
