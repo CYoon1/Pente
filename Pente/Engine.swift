@@ -235,6 +235,45 @@ class Engine {
     }
     func checkDiagonalWin(row: Int, col: Int) -> Player {
         // Check diagonals, shift over one for each
+        let player = board[row][col].player
+        for startOffset in -4...0 {
+            let newRow = row + startOffset
+            let newCol = col + startOffset
+            guard (newRow >= 0) && (newRow < rowMax) else { continue }
+            guard (newCol >= 0) && (newCol < colMax) else { continue }
+            var numberMatching = 0
+            for offset in 0...4 {
+                let r = newRow + offset
+                let c = newCol + offset
+                guard (r >= 0) && (r < rowMax) else { break }
+                guard (c >= 0) && (c < colMax) else { break }
+                if board[r][c].player == player {
+                    numberMatching += 1
+                }
+            }
+            if numberMatching == 5 {
+                return player
+            }
+        }
+        for startOffset in -4...0 {
+            let newRow = row - startOffset
+            let newCol = col + startOffset
+            guard (newRow >= 0) && (newRow < rowMax) else { continue }
+            guard (newCol >= 0) && (newCol < colMax) else { continue }
+            var numberMatching = 0
+            for offset in 0...4 {
+                let r = newRow - offset
+                let c = newCol + offset
+                guard (r >= 0) && (r < rowMax) else { break }
+                guard (c >= 0) && (c < colMax) else { break }
+                if board[r][c].player == player {
+                    numberMatching += 1
+                }
+            }
+            if numberMatching == 5 {
+                return player
+            }
+        }
         
         // No winning conditions found
         return .none
