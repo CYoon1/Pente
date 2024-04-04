@@ -20,6 +20,13 @@ class VM {
         engine.colMax
     }
     
+    var playerXCapCounter: Int {
+        engine.numberCapturedByX
+    }
+    var playerOCapCounter: Int {
+        engine.numberCapturedByO
+    }
+    
     var isGameOver: Bool {
         engine.currentGameState != .running
     }
@@ -35,5 +42,15 @@ class VM {
             .onTapGesture {
                 self.engine.handleTap(row: row, col: col)
             }
+    }
+    
+    func capCounter() -> some View {
+        HStack {
+            VStack {
+                Text("Player 1: \(playerXCapCounter)")
+                Text("Player 2: \(playerOCapCounter)")
+            }
+            Spacer()
+        }
     }
 }

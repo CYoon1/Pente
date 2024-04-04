@@ -12,6 +12,7 @@ struct BoardView: View {
     @State var showAlert = false
     var body: some View {
         VStack(spacing: vm.spacing) {
+            vm.capCounter()
             ForEach(0..<vm.rowMax, id: \.self) { row in
                 HStack(spacing: vm.spacing) {
                     ForEach(0..<vm.colMax, id: \.self) { col in
