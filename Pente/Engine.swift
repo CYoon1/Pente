@@ -236,7 +236,22 @@ class Engine {
     }
     func checkHorizontalWin(row: Int, col: Int) -> Player {
         // Check Horizontals, shift over one for each
-        
+        let player = board[row][col].player
+        for startOffset in -5...0 {
+            let newCol = col + startOffset
+            guard (newCol >= 0) && (newCol < colMax) else { continue }
+            var numberMatching = 0
+            for j in 0...5 {
+                let c = newCol + j
+                guard (c >= 0) && (c < colMax) else { break }
+                if board[row][c].player == player {
+                    numberMatching += 1
+                }
+            }
+            if numberMatching == 5 {
+                return player
+            }
+        }
         // No winning conditions found
         return .none
     }
