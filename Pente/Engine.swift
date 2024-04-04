@@ -241,7 +241,22 @@ class Engine {
     }
     func checkVerticalWin(row: Int, col: Int) -> Player {
         // Check Verticals, shift over one for each
-        
+        let player = board[row][col].player
+        for startOffset in -4...0 {
+            let newRow = row + startOffset
+            guard (newRow >= 0) && (newRow < rowMax) else { continue }
+            var numberMatching = 0
+            for offset in 0...4 {
+                let r = newRow + offset
+                guard (r >= 0) && (r < rowMax) else { break }
+                if board[r][col].player == player {
+                    numberMatching += 1
+                }
+            }
+            if numberMatching == 5 {
+                return player
+            }
+        }
         // No winning conditions found
         return .none
     }
