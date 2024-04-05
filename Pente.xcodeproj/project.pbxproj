@@ -16,6 +16,7 @@
 		D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */; };
 		D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA912BBB6E7D005B63FE /* VM.swift */; };
 		D81AAA942BBB6E9E005B63FE /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA932BBB6E9E005B63FE /* Engine.swift */; };
+		D8F6DE7A2BC0BA7E00A03A20 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6DE792BC0BA7E00A03A20 /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		D81AAA912BBB6E7D005B63FE /* VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM.swift; sourceTree = "<group>"; };
 		D81AAA932BBB6E9E005B63FE /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		D8F6DE792BC0BA7E00A03A20 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				D81AAA652BBB6E43005B63FE /* PenteApp.swift */,
 				D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */,
+				D8F6DE792BC0BA7E00A03A20 /* MenuView.swift */,
 				D81AAA912BBB6E7D005B63FE /* VM.swift */,
 				D81AAA932BBB6E9E005B63FE /* Engine.swift */,
 				D81AAA692BBB6E45005B63FE /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F6DE7A2BC0BA7E00A03A20 /* MenuView.swift in Sources */,
 				D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */,
 				D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */,
 				D81AAA662BBB6E43005B63FE /* PenteApp.swift in Sources */,
