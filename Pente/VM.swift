@@ -47,8 +47,24 @@ class VM {
     func capCounter() -> some View {
         HStack {
             VStack {
-                Text("Player 1: \(playerXCapCounter)")
-                Text("Player 2: \(playerOCapCounter)")
+                HStack {
+                    Text("Player 1: \(playerXCapCounter) ")
+                    ForEach(0..<playerXCapCounter, id: \.self) { _ in
+                        Circle()
+                            .fill(Color.blue)
+                            .frame(width: 10, height: 10)
+                    }
+                    Spacer()
+                }
+                HStack {
+                    Text("Player 2: \(playerOCapCounter) ")
+                    ForEach(0..<playerOCapCounter, id: \.self) { _ in
+                        Circle()
+                            .fill(Color.red)
+                            .frame(width: 10, height: 10)
+                    }
+                    Spacer()
+                }
             }
             Spacer()
             Button {
