@@ -15,9 +15,9 @@ enum GameState: Int {
         case .running:
             "Game in Progress"
         case .xwin:
-            "X has Won the Game"
+            "Red has Won the Game"
         case .owin:
-            "O has Won the Game"
+            "Blue has Won the Game"
         case .draw:
             "Game Results in a Tie"
         }

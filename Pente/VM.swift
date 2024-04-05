@@ -48,7 +48,7 @@ class VM {
         HStack {
             VStack {
                 HStack {
-                    Text("Player 1: \(playerXCapCounter) ")
+                    Text("Red Player:  \(playerXCapCounter) ")
                     ForEach(0..<playerXCapCounter, id: \.self) { _ in
                         Circle()
                             .fill(Color.blue)
@@ -57,7 +57,7 @@ class VM {
                     Spacer()
                 }
                 HStack {
-                    Text("Player 2: \(playerOCapCounter) ")
+                    Text("Blue Player: \(playerOCapCounter) ")
                     ForEach(0..<playerOCapCounter, id: \.self) { _ in
                         Circle()
                             .fill(Color.red)
