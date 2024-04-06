@@ -44,15 +44,32 @@ struct MenuView: View {
 struct RulesView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        VStack {
-            Text("Rules Here")
+        VStack(alignment: .center) {
+            Spacer()
+            Text("Rules")
                 .font(.title)
+            Spacer()
+            Group {
+                Text("Goal of the Game")
+                    .font(.headline)
+                Text("Get 5 in a row (horizontal/diagonal/vertical).")
+                Text("Or capture 10 of the opposing pieces.")
+            }
+            Group {
+                Text("How to Capture?")
+                    .font(.headline)
+                Text("The targets for capture must be 2 pieces positioned adjacent to each other")
+                Text("To capture the targets, a piece must placed on either end of the targets")
+                Text("X O O X --> X _ _ X")
+                Text("With 'O' being the target for capture")
+            }
+            Spacer()
             Button {
                 dismiss()
             } label: {
                 Text("Dismiss")
             }
-
+            Spacer()
         }
     }
 }
@@ -88,4 +105,5 @@ struct GameView: View {
 
 #Preview {
     ContentView()
+//    RulesView()
 }
