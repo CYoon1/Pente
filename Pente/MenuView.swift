@@ -12,22 +12,32 @@ struct MenuView: View {
     @Binding var playGame: Bool
     var body: some View {
         VStack {
+            Spacer()
             Text("Pente")
                 .font(.largeTitle)
-            Button {
-                playGame = true
-            } label: {
-                Text("Play Game")
+            Spacer()
+            Group {
+                Button {
+                    playGame = true
+                } label: {
+                    Text("Play Game")
+                }
+                Button {
+                    
+                } label: {
+                    Text("Saved Games")
+                }
+                Button {
+                    showingRulesSheet.toggle()
+                } label: {
+                    Text("How to Play?")
+                }
             }
-            Button {
-                showingRulesSheet.toggle()
-            } label: {
-                Text("How to Play?")
-            }
-            .sheet(isPresented: $showingRulesSheet, content: {
-                RulesView()
-            })
+            Spacer()
         }
+        .sheet(isPresented: $showingRulesSheet, content: {
+            RulesView()
+        })
     }
 }
 
