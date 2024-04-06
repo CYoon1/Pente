@@ -9,25 +9,24 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var showingRulesSheet = false
+    @Binding var playGame: Bool
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Pente")
-                    .font(.largeTitle)
-                Button {
-                    
-                } label: {
-                    Text("Play")
-                }
-                Button {
-                    showingRulesSheet.toggle()
-                } label: {
-                    Text("How to Play?")
-                }
-                .sheet(isPresented: $showingRulesSheet, content: {
-                    RulesView()
-                })
+        VStack {
+            Text("Pente")
+                .font(.largeTitle)
+            Button {
+                playGame = true
+            } label: {
+                Text("Play")
             }
+            Button {
+                showingRulesSheet.toggle()
+            } label: {
+                Text("How to Play?")
+            }
+            .sheet(isPresented: $showingRulesSheet, content: {
+                RulesView()
+            })
         }
     }
 }
@@ -48,6 +47,35 @@ struct RulesView: View {
     }
 }
 
+struct ContentView: View {
+    @State var playGame: Bool = false
+    var body: some View {
+        NavigationStack {
+            if playGame {
+                GameView(playGame: $playGame)
+            } else {
+                MenuView(playGame: $playGame)
+            }
+        }
+    }
+}
+
+struct GameView: View {
+    @Binding var playGame: Bool
+    var body: some View {
+        VStack {
+            BoardView()
+        }
+        .toolbar(content: {
+            ToolbarItem(placement: .bottomBar) {
+                Button("Exit") {
+                    playGame = false
+                }
+            }
+        })
+    }
+}
+
 #Preview {
-    MenuView()
+    ContentView()
 }
