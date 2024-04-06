@@ -17,7 +17,7 @@ struct MenuView: View {
             Button {
                 playGame = true
             } label: {
-                Text("Play")
+                Text("Play Game")
             }
             Button {
                 showingRulesSheet.toggle()
@@ -68,7 +68,7 @@ struct GameView: View {
         }
         .toolbar(content: {
             ToolbarItem(placement: .bottomBar) {
-                Button("Exit") {
+                Button("Quit") {
                     playGame = false
                 }
             }
