@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D815AC872BC30D150067C89A /* GameSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = D815AC862BC30D150067C89A /* GameSave.swift */; };
 		D81AAA662BBB6E43005B63FE /* PenteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AAA652BBB6E43005B63FE /* PenteApp.swift */; };
 		D81AAA6A2BBB6E45005B63FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81AAA692BBB6E45005B63FE /* Assets.xcassets */; };
 		D81AAA6D2BBB6E45005B63FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81AAA6C2BBB6E45005B63FE /* Preview Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D815AC862BC30D150067C89A /* GameSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSave.swift; sourceTree = "<group>"; };
 		D81AAA622BBB6E43005B63FE /* Pente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pente.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81AAA652BBB6E43005B63FE /* PenteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenteApp.swift; sourceTree = "<group>"; };
 		D81AAA692BBB6E45005B63FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D81AAA652BBB6E43005B63FE /* PenteApp.swift */,
 				D81AAA8F2BBB6E5E005B63FE /* BoardView.swift */,
 				D8F6DE792BC0BA7E00A03A20 /* MenuView.swift */,
+				D815AC862BC30D150067C89A /* GameSave.swift */,
 				D81AAA912BBB6E7D005B63FE /* VM.swift */,
 				D81AAA932BBB6E9E005B63FE /* Engine.swift */,
 				D81AAA692BBB6E45005B63FE /* Assets.xcassets */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D815AC872BC30D150067C89A /* GameSave.swift in Sources */,
 				D8F6DE7A2BC0BA7E00A03A20 /* MenuView.swift in Sources */,
 				D81AAA902BBB6E5E005B63FE /* BoardView.swift in Sources */,
 				D81AAA922BBB6E7D005B63FE /* VM.swift in Sources */,
