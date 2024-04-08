@@ -44,12 +44,20 @@ struct SaveListView: View {
             ForEach(games) { game in
                 HStack {
                     NavigationLink {
-//                        BoardView()
+                        BoardView(game: game, save: save, delete: { _ in })
                     } label: {
                         Text("Game \(game.player1) vs \(game.player2)" )
                     }
                 }
             }
+        }
+        .navigationTitle("Save List")
+    }
+    
+    
+    private func save(_ game: GameData) {
+        withAnimation {
+            try? self.modelContext.save()
         }
     }
 }

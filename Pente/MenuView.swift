@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MenuView: View {
     @State private var showingRulesSheet = false
@@ -88,10 +89,12 @@ struct ContentView: View {
 }
 
 struct GameView: View {
+    @Environment(\.modelContext) private var modelContext
+    
     @Binding var playGame: Bool
     var body: some View {
         VStack {
-            BoardView()
+            BoardView(game: GameData(), save: add, delete: { _ in })
         }
         .toolbar(content: {
             ToolbarItem(placement: .bottomBar) {
@@ -101,9 +104,13 @@ struct GameView: View {
             }
         })
     }
+    private func add(_ game: GameData) {
+        withAnimation {
+            modelContext.insert(game)
+        }
+    }
 }
 
 #Preview {
     ContentView()
-//    RulesView()
 }

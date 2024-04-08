@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct BoardView: View {
+    @Bindable var game: GameData
+    var save: (GameData) -> ()
+    var delete: (GameData) -> ()
+    
     @State var vm = VM()
     @State var showAlert = false
     var body: some View {
@@ -19,6 +23,9 @@ struct BoardView: View {
                         vm.tileView(row: row, col: col)
                     }
                 }
+            }
+            Button("Save") {
+                save(game)
             }
         }
         .onChange(of: vm.isGameOver) {
@@ -35,7 +42,6 @@ struct BoardView: View {
         } message: {
             Text(vm.getAlertText())
         }
-
     }
 }
 struct TileView: View {
@@ -56,5 +62,5 @@ struct TileView: View {
 }
 
 #Preview {
-    BoardView()
+    BoardView(game: GameData(), save: { _ in }, delete: { _ in })
 }
