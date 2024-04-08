@@ -22,8 +22,8 @@ struct MenuView: View {
                 } label: {
                     Text("Play Game")
                 }
-                Button {
-                    
+                NavigationLink {
+                    SaveListView()
                 } label: {
                     Text("Saved Games")
                 }
