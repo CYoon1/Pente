@@ -21,11 +21,32 @@ struct BoardView: View {
                 HStack(spacing: vm.spacing) {
                     ForEach(0..<vm.colMax, id: \.self) { col in
                         vm.tileView(row: row, col: col)
+                            .onTapGesture {
+                                print("Adding Move row: \(row), col: \(col)")
+                                game.addMove(row: row, col: col)
+                            }
                     }
                 }
             }
-            Button("Save") {
-                save(game)
+            HStack {
+                Spacer()
+                Button("Save Moves") {
+                    for move in vm.tempMoveList {
+                        print("Adding Move row: \(move.0), col: \(move.1)")
+                        game.addMove(row: move.0, col: move.1)
+                    }
+                }
+                Spacer()
+                Button("Save Game") {
+                    save(game)
+                }
+                Spacer()
+            }
+            List {
+                Text("Move List")
+                ForEach(game.moves, id: \.self) { move in
+                    Text("Row: \(move.row), Col: \(move.col)")
+                }
             }
         }
         .onChange(of: vm.isGameOver) {

@@ -61,6 +61,14 @@ enum Player: Int {
         }
         return self != player
     }
+    var isEmpty: Bool {
+        switch self {
+        case .none:
+            true
+        default:
+            false
+        }
+    }
 }
 
 struct Tile: Identifiable {
@@ -100,6 +108,12 @@ class Engine {
     }
     func changeTile(row: Int, col: Int) {
         board[row][col].player = currentPlayer
+    }
+    func isSpaceOpen(row: Int, col: Int) -> Bool {
+        if board[row][col].player.isEmpty {
+            return true
+        }
+        return false
     }
     
     func captureCounter() {

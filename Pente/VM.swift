@@ -12,6 +12,7 @@ import SwiftUI
 class VM {
     var spacing: CGFloat = 5
     private var engine = Engine()
+    var tempMoveList = [(Int, Int)]()
     
     var rowMax: Int  {
         engine.rowMax
@@ -37,10 +38,18 @@ class VM {
         engine.currentGameState.text
     }
     
+    func isSpaceOpen(row: Int, col: Int) -> Bool {
+        engine.isSpaceOpen(row: row, col: col)
+    }
+    func addMove(row: Int, col: Int) {
+        tempMoveList.append((row, col))
+    }
+    
     func tileView(row: Int, col: Int) -> some View {
         TileView(tile: engine.board[row][col])
             .onTapGesture {
                 self.engine.handleTap(row: row, col: col)
+                self.addMove(row: row, col: col)
             }
     }
     

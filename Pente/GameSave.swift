@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-struct Move: Codable {
+struct Move: Codable, Hashable {
     var timestamp: Date = Date()
     var row: Int
     var col: Int
@@ -42,14 +42,13 @@ struct SaveListView: View {
     var body: some View {
         List {
             ForEach(games) { game in
-                HStack {
-                    NavigationLink {
-                        BoardView(game: game, save: save, delete: { _ in })
-                    } label: {
-                        Text("Game \(game.player1) vs \(game.player2)" )
-                    }
+                NavigationLink {
+                    BoardView(game: game, save: save, delete: { _ in })
+                } label: {
+                    Text("Game \(game.player1) vs \(game.player2)" )
                 }
             }
+            .onDelete(perform: deleteGames)
         }
         .navigationTitle("Save List")
     }
@@ -58,6 +57,14 @@ struct SaveListView: View {
     private func save(_ game: GameData) {
         withAnimation {
             try? self.modelContext.save()
+        }
+    }
+    
+    private func deleteGames(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(games[index])
+            }
         }
     }
 }
