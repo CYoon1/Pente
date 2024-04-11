@@ -30,14 +30,11 @@ struct BoardView: View {
             }
             HStack {
                 Spacer()
-                Button("Save Moves") {
+                Button("Save Game") {
                     for move in vm.tempMoveList {
                         print("Adding Move row: \(move.0), col: \(move.1)")
                         game.addMove(row: move.0, col: move.1)
                     }
-                }
-                Spacer()
-                Button("Save Game") {
                     save(game)
                 }
                 Spacer()
@@ -49,6 +46,9 @@ struct BoardView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            vm.loadGameOnAppear(game: game)
+        })
         .onChange(of: vm.isGameOver) {
             if vm.isGameOver {
                 showAlert = true

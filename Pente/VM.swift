@@ -44,6 +44,17 @@ class VM {
     func addMove(row: Int, col: Int) {
         tempMoveList.append((row, col))
     }
+    func loadGame(game: GameData) {
+        resetGame()
+        for move in game.moves {
+            self.engine.handleTap(row: move.row, col: move.col)
+        }
+    }
+    func loadGameOnAppear(game: GameData) {
+        for move in game.moves {
+            self.engine.handleTap(row: move.row, col: move.col)
+        }
+    }
     
     func tileView(row: Int, col: Int) -> some View {
         TileView(tile: engine.board[row][col])
