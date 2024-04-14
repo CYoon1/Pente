@@ -45,7 +45,7 @@ struct SaveListView: View {
                 NavigationLink {
                     BoardView(game: game, save: save, delete: { _ in })
                 } label: {
-                    Text("Game \(game.player1) vs \(game.player2)" )
+                    SaveRowView(game: game)
                 }
             }
             .onDelete(perform: deleteGames)
@@ -67,4 +67,19 @@ struct SaveListView: View {
             }
         }
     }
+}
+
+struct SaveRowView: View {
+    let game : GameData
+    let dateFormatter = DateFormatter()
+    
+    var body: some View {
+        dateFormatter.dateStyle = .full
+        return VStack(alignment: .leading, content: {
+            Text("Game \(game.player1) vs \(game.player2)" )
+            Text(dateFormatter.string(from: game.timestamp))
+        })
+    }
+    
+    
 }
