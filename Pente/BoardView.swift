@@ -14,6 +14,10 @@ struct BoardView: View {
     
     @State var vm = VM()
     @State var showAlert = false
+    
+    @State var player1: String = ""
+    @State var player2: String = ""
+    
     var body: some View {
         VStack(spacing: vm.spacing) {
             vm.capCounter()
@@ -28,23 +32,34 @@ struct BoardView: View {
                     }
                 }
             }
-            HStack {
-                Spacer()
-                Button("Save Game") {
-                    for move in vm.tempMoveList {
-                        print("Adding Move row: \(move.0), col: \(move.1)")
-                        game.addMove(row: move.0, col: move.1)
+                HStack {
+                    Spacer()
+                    Button("Save Game") {
+                        updateAndSaveGame()
                     }
-                    save(game)
+                    .buttonStyle(.borderedProminent)
+                    Spacer()
+                    NavigationLink(destination: {
+                        Form {
+                            Section {
+                                TextField("Player 1", text: $game.player1)
+                                TextField("Player 2", text: $game.player2)
+                            }
+                            Section {
+                                List {
+                                    Text("Move List")
+                                    ForEach(game.moves, id: \.self) { move in
+                                        Text("Row: \(move.row), Col: \(move.col)")
+                                    }
+                                }
+                            }
+                        }
+                    }, label: {
+                        Text("Details")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    Spacer()
                 }
-                Spacer()
-            }
-            List {
-                Text("Move List")
-                ForEach(game.moves, id: \.self) { move in
-                    Text("Row: \(move.row), Col: \(move.col)")
-                }
-            }
         }
         .onAppear(perform: {
             vm.loadGameOnAppear(game: game)
@@ -63,6 +78,13 @@ struct BoardView: View {
         } message: {
             Text(vm.getAlertText())
         }
+    }
+    func updateAndSaveGame(){
+        for move in vm.tempMoveList {
+            print("Adding Move row: \(move.0), col: \(move.1)")
+            game.addMove(row: move.0, col: move.1)
+        }
+        save(game)
     }
 }
 struct TileView: View {
